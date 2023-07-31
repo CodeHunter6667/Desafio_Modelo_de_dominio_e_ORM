@@ -1,6 +1,7 @@
 package com.rafaelehlert.eventos.entities;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -60,5 +61,21 @@ public class Participante {
     public Set<Atividade> getAtividades() {
         return this.atividades;
     }
-    
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Participante)) {
+            return false;
+        }
+        Participante participante = (Participante) o;
+        return Objects.equals(id, participante.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
 }

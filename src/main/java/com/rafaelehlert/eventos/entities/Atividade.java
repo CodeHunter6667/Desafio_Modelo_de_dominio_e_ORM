@@ -3,6 +3,7 @@ package com.rafaelehlert.eventos.entities;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -93,6 +94,22 @@ public class Atividade {
 
     public Set<Participante> getParticipantes() {
         return this.participantes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Atividade)) {
+            return false;
+        }
+        Atividade atividade = (Atividade) o;
+        return Objects.equals(id, atividade.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 
 }
